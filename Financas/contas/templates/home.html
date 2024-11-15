@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block title %}Cartões de Crédito{% endblock %}
+
+{% block content %}
+<div class="flex flex-col justify-center items-center min-h-screen bg-gradient-to-r from-blue-500 to-purple-600 p-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+        <!-- Cartão Banco do Brasil -->
+        <div id="bbCard" class="credit-card w-80 h-48 rounded-xl overflow-hidden shadow-lg cursor-pointer transition-transform duration-300 ease-in-out transform hover:scale-105">
+            <div class="credit-card-inner relative w-full h-full">
+                <div class="credit-card-front absolute w-full h-full bg-yellow-300 p-6 flex flex-col justify-between">
+                    <div class="flex justify-between items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" class="h-12 w-12">
+                            <path d="M500 10C229.4 10 10 229.4 10 500s219.4 490 490 490 490-219.4 490-490S770.6 10 500 10zm230.8 721.5c-38.5 38.5-83.5 68.8-133.5 89.9-51.7 21.9-106.7 33-163.3 33s-111.6-11.1-163.3-33c-50-21.1-95-51.4-133.5-89.9s-68.8-83.5-89.9-133.5c-21.9-51.7-33-106.7-33-163.3s11.1-111.6 33-163.3c21.1-50 51.4-95 89.9-133.5s83.5-68.8 133.5-89.9c51.7-21.9 106.7-33 163.3-33s111.6 11.1 163.3 33c50 21.1 95 51.4 133.5 89.9s68.8 83.5 89.9 133.5c21.9 51.7 33 106.7 33 163.3s-11.1 111.6-33 163.3c-21.1 50-51.4 95-89.9 133.5z" fill="#0046b5"/>
+                            <path d="M672.2 345.4H327.8c-24.7 0-44.8 20.1-44.8 44.8v219.5c0 24.7 20.1 44.8 44.8 44.8h344.3c24.7 0 44.8-20.1 44.8-44.8V390.3c.1-24.7-20-44.9-44.7-44.9zm-172.1 237.3c-68.5 0-124-55.5-124-124s55.5-124 124-124 124 55.5 124 124-55.5 124-124 124z" fill="#0046b5"/>
+                        </svg>
+                        <span class="text-blue-800 text-lg font-bold">XXXX-0000-YYYY-ZZZZ</span>
+                    </div>
+                    <div class="text-blue-800">
+                        <p class="text-sm">Titular do Cartão</p>
+                        <p class="text-lg font-semibold">Mateus Vitor</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cartão Nubank -->
+        <div id="nubankCard" class="credit-card w-80 h-48 rounded-xl overflow-hidden shadow-lg cursor-pointer transition-transform duration-300 ease-in-out transform hover:scale-105">
+            <div class="credit-card-inner relative w-full h-full">
+                <div class="credit-card-front absolute w-full h-full bg-purple-700 p-6 flex flex-col justify-between">
+                    <div class="flex justify-between items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="h-12 w-12 fill-current text-white">
+                            <path d="M50 0C22.4 0 0 22.4 0 50s22.4 50 50 50 50-22.4 50-50S77.6 0 50 0zm0 88.9C28.5 88.9 11.1 71.5 11.1 50S28.5 11.1 50 11.1 88.9 28.5 88.9 50 71.5 88.9 50 88.9z"/>
+                            <path d="M50 22.2c-15.3 0-27.8 12.5-27.8 27.8S34.7 77.8 50 77.8 77.8 65.3 77.8 50 65.3 22.2 50 22.2zm0 44.4c-9.2 0-16.7-7.5-16.7-16.7S40.8 33.3 50 33.3 66.7 40.8 66.7 50 59.2 66.6 50 66.6z"/>
+                        </svg>
+                        <span class="text-white text-lg font-bold">XXXX-0000-YYYY-ZZZZ</span>
+                    </div>
+                    <div class="text-white">
+                        <p class="text-sm">Titular do Cartão</p>
+                        <p class="text-lg font-semibold">Mateus Vitor</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="bbInvoice" class="hidden bg-white p-4 rounded-lg shadow-md mb-4 w-80">
+        <h3 class="text-lg font-semibold mb-2">Fatura Atual: R$ 300,00</h3>
+        <p>Parcela 7 de 10 - Celular: R$ 150,00</p>
+        <p>Parcela 3 de 10 - Mesa: R$ 150,00</p>
+        <p class="text-green-600 font-semibold mt-2">Saldo disponível: R$ 300,00</p>
+    </div>
+
+    <div id="nubankInvoice" class="hidden bg-white p-4 rounded-lg shadow-md mb-4 w-80">
+        <h3 class="text-lg font-semibold mb-2">Fatura Atual: R$ 100,00</h3>
+        <p>Uber: R$ 100,00</p>
+        <p class="text-red-600 font-semibold mt-2">Saldo disponível: R$ 0,00</p>
+    </div>
+
+    <div id="viewStatementButton" class="hidden">
+        <a href="{% url 'statement_form' %}" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full shadow-lg transition-colors duration-300">
+            Ver Fatura
+        </a>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    const bbCard = document.getElementById('bbCard');
+    const nubankCard = document.getElementById('nubankCard');
+    const viewStatementButton = document.getElementById('viewStatementButton');
+    const bbInvoice = document.getElementById('bbInvoice');
+    const nubankInvoice = document.getElementById('nubankInvoice');
+    let selectedCard = null;
+
+    function toggleCardSelection(card, invoice) {
+        if (selectedCard === card) {
+            card.classList.remove('ring-4', 'ring-green-500');
+            selectedCard = null;
+            viewStatementButton.classList.add('hidden');
+            invoice.classList.add('hidden');
+        } else {
+            if (selectedCard) {
+                selectedCard.classList.remove('ring-4', 'ring-green-500');
+                bbInvoice.classList.add('hidden');
+                nubankInvoice.classList.add('hidden');
+            }
+            card.classList.add('ring-4', 'ring-green-500');
+            selectedCard = card;
+            viewStatementButton.classList.remove('hidden');
+            invoice.classList.remove('hidden');
+        }
+    }
+
+    bbCard.addEventListener('click', () => toggleCardSelection(bbCard, bbInvoice));
+    nubankCard.addEventListener('click', () => toggleCardSelection(nubankCard, nubankInvoice));
+</script>
+{% endblock %}
